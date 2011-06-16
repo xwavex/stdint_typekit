@@ -12,7 +12,7 @@ cmake_minimum_required(VERSION 2.6.3)
 # macro, except for orocos_typekit, where the target is fully
 # controlled by generated code of 'typegen'.
 #
-project(stdint-typekit)
+project(stdint)
 
 # Set the CMAKE_PREFIX_PATH in case you're not using Orocos through ROS
 # for helping these find commands find RTT.
@@ -25,7 +25,7 @@ include(${OROCOS-RTT_USE_FILE_PATH}/UseOROCOS-RTT.cmake)
 #
 # Building a Plugin or Service (optional):
 #
-orocos_plugin(stdint-typekit StdintTypekit.cpp INSTALL lib/orocos/types)
+orocos_plugin(stdint-typekit StdintTypekit.cpp)
 
 #
 # Additional headers (not in typekit):
