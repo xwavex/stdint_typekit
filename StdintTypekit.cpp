@@ -1,5 +1,34 @@
+/***************************************************************************
+
+                            StdintTypekit.cpp
+                           -------------------
+    project              : Orocos Toolchain
+    package              : stdint-typekit
+    author               : Charles Lesire-Cabaniols
+    copyright            : (C) 2011 Onera - the French Aerospace Lab
+    email                : charles.lesire@onera.fr
+
+ ***************************************************************************
+ *   This library is free software; you can redistribute it and/or         *
+ *   modify it under the terms of the GNU Lesser General Public            *
+ *   License as published by the Free Software Foundation; either          *
+ *   version 2.1 of the License, or (at your option) any later version.    *
+ *                                                                         *
+ *   This library is distributed in the hope that it will be useful,       *
+ *   but WITHOUT ANY WARRANTY; without even the implied warranty of        *
+ *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU     *
+ *   Lesser General Public License for more details.                       *
+ *                                                                         *
+ *   You should have received a copy of the GNU Lesser General Public      *
+ *   License along with this library; if not, write to the Free Software   *
+ *   Foundation, Inc., 59 Temple Place,                                    *
+ *   Suite 330, Boston, MA  02111-1307  USA                                *
+ *                                                                         *
+ ***************************************************************************/
+
 #include <stdint.h>
 #include <boost/assign.hpp>
+#include <boost/lexical_cast.hpp>
 
 #include <rtt/typekit/StdTypeInfo.hpp>
 #include <rtt/types/TemplateConstructor.hpp>
@@ -8,7 +37,6 @@
 #include <rtt/internal/mystd.hpp>
 
 #include "StdintTypekit.hpp"
-#include "StdintConversions.hpp"
 
 namespace RTT {
 namespace types {
@@ -92,152 +120,96 @@ bool StdintTypekitPlugin::loadTypes() {
 bool StdintTypekitPlugin::loadConstructors() {
 	// int8
 #ifdef ADD_INT8_TYPE
-	ti ->type("int8")->addConstructor(newConstructor(&convertIntTypes<
-					int_least16_t, int_least8_t> , false));
-	ti->type("int8")->addConstructor(newConstructor(&convertIntTypes<
-					int_least32_t, int_least8_t> , false));
-	ti->type("int8")->addConstructor(newConstructor(&convertIntTypes<
-					int_least64_t, int_least8_t> , false));
-	ti->type("int8")->addConstructor(newConstructor(&convertIntTypes<
-					uint_least8_t, int_least8_t> , false));
-	ti->type("int8")->addConstructor(newConstructor(&convertIntTypes<
-					uint_least16_t, int_least8_t> , false));
-	ti->type("int8")->addConstructor(newConstructor(&convertIntTypes<
-					uint_least32_t, int_least8_t> , false));
-	ti->type("int8")->addConstructor(newConstructor(&convertIntTypes<
-					uint_least64_t, int_least8_t> , false));
+	ti->type("int8")->addConstructor(newConstructor(boost::lexical_cast<int_least8_t, int_least16_t> , false));
+	ti->type("int8")->addConstructor(newConstructor(boost::lexical_cast<int_least8_t, int_least32_t> , false));
+	ti->type("int8")->addConstructor(newConstructor(boost::lexical_cast<int_least8_t, int_least64_t> , false));
+	ti->type("int8")->addConstructor(newConstructor(boost::lexical_cast<int_least8_t, uint_least8_t> , false));
+	ti->type("int8")->addConstructor(newConstructor(boost::lexical_cast<int_least8_t, uint_least16_t> , false));
+	ti->type("int8")->addConstructor(newConstructor(boost::lexical_cast<int_least8_t, uint_least32_t> , false));
+	ti->type("int8")->addConstructor(newConstructor(boost::lexical_cast<int_least8_t, uint_least64_t> , false));
 #endif
 	// int16
 #ifdef ADD_INT8_TYPE
-	ti ->type("int16")->addConstructor(newConstructor(&convertIntTypes<
-					int_least8_t, int_least16_t> , false));
+	ti->type("int16")->addConstructor(newConstructor(boost::lexical_cast<int_least16_t, int_least8_t> , false));
 #endif
-	ti->type("int16")->addConstructor(newConstructor(&convertIntTypes<
-			int_least32_t, int_least16_t> , false));
-	ti->type("int16")->addConstructor(newConstructor(&convertIntTypes<
-			int_least64_t, int_least16_t> , false));
+	ti->type("int16")->addConstructor(newConstructor(boost::lexical_cast<int_least16_t, int_least32_t> , false));
+	ti->type("int16")->addConstructor(newConstructor(boost::lexical_cast<int_least16_t, int_least64_t> , false));
 #ifdef ADD_INT8_TYPE
-	ti->type("int16")->addConstructor(newConstructor(&convertIntTypes<
-					uint_least8_t, int_least16_t> , false));
+	ti->type("int16")->addConstructor(newConstructor(boost::lexical_cast<int_least16_t, uint_least8_t> , false));
 #endif
-	ti->type("int16")->addConstructor(newConstructor(&convertIntTypes<
-			uint_least16_t, int_least16_t> , false));
-	ti->type("int16")->addConstructor(newConstructor(&convertIntTypes<
-			uint_least32_t, int_least16_t> , false));
-	ti->type("int16")->addConstructor(newConstructor(&convertIntTypes<
-			uint_least64_t, int_least16_t> , false));
+	ti->type("int16")->addConstructor(newConstructor(boost::lexical_cast<int_least16_t, uint_least16_t> , false));
+	ti->type("int16")->addConstructor(newConstructor(boost::lexical_cast<int_least16_t, uint_least32_t> , false));
+	ti->type("int16")->addConstructor(newConstructor(boost::lexical_cast<int_least16_t, uint_least64_t> , false));
 	// int32
 #ifdef ADD_INT8_TYPE
-	ti->type("int32")->addConstructor(newConstructor(&convertIntTypes<
-					int_least8_t, int_least32_t> , false));
+	ti->type("int32")->addConstructor(newConstructor(boost::lexical_cast<int_least32_t, int_least8_t> , false));
 #endif
-	ti->type("int32")->addConstructor(newConstructor(&convertIntTypes<
-			int_least16_t, int_least32_t> , false));
-	ti->type("int32")->addConstructor(newConstructor(&convertIntTypes<
-			int_least64_t, int_least32_t> , false));
+	ti->type("int32")->addConstructor(newConstructor(boost::lexical_cast<int_least32_t, int_least16_t> , false));
+	ti->type("int32")->addConstructor(newConstructor(boost::lexical_cast<int_least32_t, int_least64_t> , false));
 #ifdef ADD_INT8_TYPE
-	ti->type("int32")->addConstructor(newConstructor(&convertIntTypes<
-					uint_least8_t, int_least32_t> , false));
+	ti->type("int32")->addConstructor(newConstructor(boost::lexical_cast<int_least32_t, uint_least8_t> , false));
 #endif
-	ti->type("int32")->addConstructor(newConstructor(&convertIntTypes<
-			uint_least16_t, int_least32_t> , false));
-	ti->type("int32")->addConstructor(newConstructor(&convertIntTypes<
-			uint_least32_t, int_least32_t> , false));
-	ti->type("int32")->addConstructor(newConstructor(&convertIntTypes<
-			uint_least64_t, int_least32_t> , false));
+	ti->type("int32")->addConstructor(newConstructor(boost::lexical_cast<int_least32_t, uint_least16_t> , false));
+	ti->type("int32")->addConstructor(newConstructor(boost::lexical_cast<int_least32_t, uint_least32_t> , false));
+	ti->type("int32")->addConstructor(newConstructor(boost::lexical_cast<int_least32_t, uint_least64_t> , false));
 	// int64
 #ifdef ADD_INT8_TYPE
-	ti->type("int64")->addConstructor(newConstructor(&convertIntTypes<
-					int_least8_t, int_least64_t> , false));
+	ti->type("int64")->addConstructor(newConstructor(boost::lexical_cast<int_least64_t, int_least8_t> , false));
 #endif
-	ti->type("int64")->addConstructor(newConstructor(&convertIntTypes<
-			int_least16_t, int_least64_t> , false));
-	ti->type("int64")->addConstructor(newConstructor(&convertIntTypes<
-			int_least32_t, int_least64_t> , false));
+	ti->type("int64")->addConstructor(newConstructor(boost::lexical_cast<int_least64_t, int_least16_t> , false));
+	ti->type("int64")->addConstructor(newConstructor(boost::lexical_cast<int_least64_t, int_least32_t> , false));
 #ifdef ADD_INT8_TYPE
-	ti->type("int64")->addConstructor(newConstructor(&convertIntTypes<
-					uint_least8_t, int_least64_t> , false));
+	ti->type("int64")->addConstructor(newConstructor(boost::lexical_cast<int_least64_t, uint_least8_t> , false));
 #endif
-	ti->type("int64")->addConstructor(newConstructor(&convertIntTypes<
-			uint_least16_t, int_least64_t> , false));
-	ti->type("int64")->addConstructor(newConstructor(&convertIntTypes<
-			uint_least32_t, int_least64_t> , false));
-	ti->type("int64")->addConstructor(newConstructor(&convertIntTypes<
-			uint_least64_t, int_least64_t> , false));
+	ti->type("int64")->addConstructor(newConstructor(boost::lexical_cast<int_least64_t, uint_least16_t> , false));
+	ti->type("int64")->addConstructor(newConstructor(boost::lexical_cast<int_least64_t, uint_least32_t> , false));
+	ti->type("int64")->addConstructor(newConstructor(boost::lexical_cast<int_least64_t, uint_least64_t> , false));
 	// uint8
 #ifdef ADD_INT8_TYPE
-	ti ->type("uint8")->addConstructor(newConstructor(&convertIntTypes<
-					int_least16_t, uint_least8_t> , false));
-	ti->type("uint8")->addConstructor(newConstructor(&convertIntTypes<
-					int_least32_t, uint_least8_t> , false));
-	ti->type("uint8")->addConstructor(newConstructor(&convertIntTypes<
-					int_least64_t, uint_least8_t> , false));
-	ti->type("uint8")->addConstructor(newConstructor(&convertIntTypes<
-					int_least8_t, uint_least8_t> , false));
-	ti->type("uint8")->addConstructor(newConstructor(&convertIntTypes<
-					uint_least16_t, uint_least8_t> , false));
-	ti->type("uint8")->addConstructor(newConstructor(&convertIntTypes<
-					uint_least32_t, uint_least8_t> , false));
-	ti->type("uint8")->addConstructor(newConstructor(&convertIntTypes<
-					uint_least64_t, uint_least8_t> , false));
+	ti->type("uint8")->addConstructor(newConstructor(boost::lexical_cast<uint_least8_t, int_least16_t> , false));
+	ti->type("uint8")->addConstructor(newConstructor(boost::lexical_cast<uint_least8_t, int_least32_t> , false));
+	ti->type("uint8")->addConstructor(newConstructor(boost::lexical_cast<uint_least8_t, int_least64_t> , false));
+	ti->type("uint8")->addConstructor(newConstructor(boost::lexical_cast<uint_least8_t, int_least8_t> , false));
+	ti->type("uint8")->addConstructor(newConstructor(boost::lexical_cast<uint_least8_t, uint_least16_t> , false));
+	ti->type("uint8")->addConstructor(newConstructor(boost::lexical_cast<uint_least8_t, uint_least32_t> , false));
+	ti->type("uint8")->addConstructor(newConstructor(boost::lexical_cast<uint_least8_t, uint_least64_t> , false));
 #endif
 	// uint16
 #ifdef ADD_INT8_TYPE
-	ti ->type("uint16")->addConstructor(newConstructor(&convertIntTypes<
-					int_least8_t, uint_least16_t> , false));
+	ti->type("uint16")->addConstructor(newConstructor(boost::lexical_cast<uint_least16_t, int_least8_t> , false));
 #endif
-	ti->type("uint16")->addConstructor(newConstructor(&convertIntTypes<
-			int_least32_t, uint_least16_t> , false));
-	ti->type("uint16")->addConstructor(newConstructor(&convertIntTypes<
-			int_least64_t, uint_least16_t> , false));
+	ti->type("uint16")->addConstructor(newConstructor(boost::lexical_cast<uint_least16_t, int_least32_t> , false));
+	ti->type("uint16")->addConstructor(newConstructor(boost::lexical_cast<uint_least16_t, int_least64_t> , false));
 #ifdef ADD_INT8_TYPE
-	ti->type("uint16")->addConstructor(newConstructor(&convertIntTypes<
-					uint_least8_t, uint_least16_t> , false));
+	ti->type("uint16")->addConstructor(newConstructor(boost::lexical_cast<uint_least16_t, uint_least8_t> , false));
 #endif
-	ti->type("uint16")->addConstructor(newConstructor(&convertIntTypes<
-			int_least16_t, uint_least16_t> , false));
-	ti->type("uint16")->addConstructor(newConstructor(&convertIntTypes<
-			uint_least32_t, uint_least16_t> , false));
-	ti->type("uint16")->addConstructor(newConstructor(&convertIntTypes<
-			uint_least64_t, uint_least16_t> , false));
+	ti->type("uint16")->addConstructor(newConstructor(boost::lexical_cast<uint_least16_t, int_least16_t> , false));
+	ti->type("uint16")->addConstructor(newConstructor(boost::lexical_cast<uint_least16_t, uint_least32_t> , false));
+	ti->type("uint16")->addConstructor(newConstructor(boost::lexical_cast<uint_least16_t, uint_least64_t> , false));
 	// uint32
 #ifdef ADD_INT8_TYPE
-	ti->type("uint32")->addConstructor(newConstructor(&convertIntTypes<
-					int_least8_t, uint_least32_t> , false));
+	ti->type("uint32")->addConstructor(newConstructor(boost::lexical_cast<uint_least32_t, int_least8_t> , false));
 #endif
-	ti->type("uint32")->addConstructor(newConstructor(&convertIntTypes<
-			int_least16_t, uint_least32_t> , false));
-	ti->type("uint32")->addConstructor(newConstructor(&convertIntTypes<
-			int_least64_t, uint_least32_t> , false));
+	ti->type("uint32")->addConstructor(newConstructor(boost::lexical_cast<uint_least32_t, int_least16_t> , false));
+	ti->type("uint32")->addConstructor(newConstructor(boost::lexical_cast<uint_least32_t, int_least64_t> , false));
 #ifdef ADD_INT8_TYPE
-	ti->type("uint32")->addConstructor(newConstructor(&convertIntTypes<
-					uint_least8_t, uint_least32_t> , false));
+	ti->type("uint32")->addConstructor(newConstructor(boost::lexical_cast<uint_least32_t, uint_least8_t> , false));
 #endif
-	ti->type("uint32")->addConstructor(newConstructor(&convertIntTypes<
-			uint_least16_t, uint_least32_t> , false));
-	ti->type("uint32")->addConstructor(newConstructor(&convertIntTypes<
-			int_least32_t, uint_least32_t> , false));
-	ti->type("uint32")->addConstructor(newConstructor(&convertIntTypes<
-			uint_least64_t, uint_least32_t> , false));
+	ti->type("uint32")->addConstructor(newConstructor(boost::lexical_cast<uint_least32_t, uint_least16_t> , false));
+	ti->type("uint32")->addConstructor(newConstructor(boost::lexical_cast<uint_least32_t, int_least32_t> , false));
+	ti->type("uint32")->addConstructor(newConstructor(boost::lexical_cast<uint_least32_t, uint_least64_t> , false));
 	// uint64
 #ifdef ADD_INT8_TYPE
-	ti->type("uint64")->addConstructor(newConstructor(&convertIntTypes<
-					int_least8_t, uint_least64_t> , false));
+	ti->type("uint64")->addConstructor(newConstructor(boost::lexical_cast<uint_least64_t, int_least8_t> , false));
 #endif
-	ti->type("uint64")->addConstructor(newConstructor(&convertIntTypes<
-			int_least16_t, uint_least64_t> , false));
-	ti->type("uint64")->addConstructor(newConstructor(&convertIntTypes<
-			int_least32_t, uint_least64_t> , false));
+	ti->type("uint64")->addConstructor(newConstructor(boost::lexical_cast<uint_least64_t, int_least16_t> , false));
+	ti->type("uint64")->addConstructor(newConstructor(boost::lexical_cast<uint_least64_t, int_least32_t> , false));
 #ifdef ADD_INT8_TYPE
-	ti->type("uint64")->addConstructor(newConstructor(&convertIntTypes<
-					uint_least8_t, uint_least64_t> , false));
+	ti->type("uint64")->addConstructor(newConstructor(boost::lexical_cast<uint_least64_t, uint_least8_t> , false));
 #endif
-	ti->type("uint64")->addConstructor(newConstructor(&convertIntTypes<
-			uint_least16_t, uint_least64_t> , false));
-	ti->type("uint64")->addConstructor(newConstructor(&convertIntTypes<
-			uint_least32_t, uint_least64_t> , false));
-	ti->type("uint64")->addConstructor(newConstructor(&convertIntTypes<
-			int_least64_t, uint_least64_t> , false));
+	ti->type("uint64")->addConstructor(newConstructor(boost::lexical_cast<uint_least64_t, uint_least16_t> , false));
+	ti->type("uint64")->addConstructor(newConstructor(boost::lexical_cast<uint_least64_t, uint_least32_t> , false));
+	ti->type("uint64")->addConstructor(newConstructor(boost::lexical_cast<uint_least64_t, int_least64_t> , false));
 
 	return true;
 }

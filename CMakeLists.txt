@@ -25,14 +25,14 @@ include(${OROCOS-RTT_USE_FILE_PATH}/UseOROCOS-RTT.cmake)
 #
 # Building a Plugin or Service (optional):
 #
-orocos_plugin(stdint-typekit StdintTypekit.cpp)
+orocos_plugin(stdint-typekit StdintTypekit.cpp Types.hpp)
 
 #
 # Additional headers (not in typekit):
 #
 # Installs in the include/orocos/transports/ directory
 #
-#orocos_install_headers( Types.hpp ) # ...you may add multiple header files
+orocos_install_headers( Types.hpp ) # ...you may add multiple header files
 
 #
 # Generates and installs our package. Must be the last statement such
