@@ -61,7 +61,7 @@ bool StdintTypekitPlugin::addTypeOrAlias(const std::string name) {
 				<< "' as type '" << t->getTypeName() << "'. Aliasing type '"
 				<< t->getTypeName() << "'" << endlog();
 		aliased[name] = true;
-		return ti->aliasType(name, t);
+		return true;//ti->aliasType(name, t);
 	}
 }
 
