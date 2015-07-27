@@ -1,0 +1,12 @@
+<package format="2">
+  <name>stdint</name>
+  <version>1.0.0</version>
+  <description>Stdint typekit for Orocos RTT. This package provides a typekit for Orocos that defines standard int types:
+			(int8) int16 int32 int64 (uint8) uint16 uint32 uint64.</description>
+  <maintainer email="orocos-dev@lists.mech.kuleuven.be">Orocos Developers</maintainer>
+  <license>LGPL</license>
+  <author email="charles.lesire@onera.fr">Charles Lesire-Cabaniols</author>
+
+  <depend>rtt</depend>
+</package>
+
