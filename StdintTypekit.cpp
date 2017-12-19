@@ -53,16 +53,8 @@ std::string StdintTypekitPlugin::getName() {
 template<typename T>
 bool StdintTypekitPlugin::addTypeOrAlias(const std::string name) {
     log(Debug) << "addTypeOrAlias<" << typeid(T).name() << ">(" << name << ")" << endlog();
-	TypeInfo* t = ti->getTypeInfo<T> ();
-	if (t == NULL)
-		return ti->addType(new StdTypeInfo<T> (name.c_str()));
-	else {
-		log(Warning) << "RTT type repository already knows type '" << name
-				<< "' as type '" << t->getTypeName() << "'. Aliasing type '"
-				<< t->getTypeName() << "'" << endlog();
-		aliased[name] = true;
-		return true;//ti->aliasType(name, t);
-	}
+	// Note: TypeInfoRepository::addType() adds an alias automatically if the type is already registered.
+	return ti->addType(new StdTypeInfo<T> (name.c_str()));
 }
 
 bool StdintTypekitPlugin::loadTypes() {

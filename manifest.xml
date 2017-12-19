@@ -10,6 +10,6 @@
 	</copyright>
     <license>LGPL</license>
 
-	<depend package="rtt"/>
+	<rosdep name="rtt"/>
 </package>
 
